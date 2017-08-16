@@ -2,6 +2,8 @@
 
 This is a code sample to demonstrate my programming skills. It was requested during an interview as a homework exercise. 
 
+![Screenshot of the running demo](https://raw.githubusercontent.com/mpiasta-ca/just-another-homework-exercise/master/screenshot.png "Screenshot of the running demo")
+
 ### Criteria
 
 The exercise had to meet the following criteria:
