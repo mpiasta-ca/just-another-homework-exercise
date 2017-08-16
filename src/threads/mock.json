@@ -1,0 +1,115 @@
+[
+  {
+    "name":"Thread 13",
+    "crashed":true,
+    "stackTrace":[
+      {
+        "module":"libsystem_kernel​.dylib",
+        "location":"__pthread_kill"
+      },
+      {
+        "module":"libsystem_c​.dylib",
+        "location":"abort"
+      },
+      {
+        "module":"libsystem_c​.dylib",
+        "location":"_UTF2_init"
+      },
+      {
+        "module":"libsystem_c​.dylib",
+        "location":"__chk_fail_overlap"
+      },
+      {
+        "module":"libsystem_c​.dylib",
+        "location":"__chk_fail"
+      },
+      {
+        "module":"libsystem_c​.dylib",
+        "location":"__stpncpy_chk"
+      },
+      {
+        "module":"m2048",
+        "location":"-[M2SettingsViewController viewDidLoad]",
+        "file":"M2SettingsViewController.m",
+        "line":63,
+        "codeSnippet":[
+          "- (void)viewDidLoad",
+          "{",
+          "  strcpy(0,'This is a bad bug');",
+          "  [super viewDidLoad];",
+          "  self.navigationController.navigationBar.tintColor = [GSTATE scoreBoardColor];",
+          "  //   Do any additional setup after loading the view.",
+          "}",
+          "",
+          "- (void)viewWillAppear:(BOOL)animated"
+        ]
+      },
+      {
+        "module":"UIKit",
+        "location":"-[UIViewController loadViewIfRequired]"
+      },
+      {
+        "module":"UIKit",
+        "location":"-[UIViewController view]"
+      },
+      {
+        "module":"UIKit",
+        "location":"-[UINavigationController preferredContentSize]"
+      },
+      {
+        "module":"UIKit",
+        "location":"-[UIPresentationController preferredContentSizeDidChangeForChildContentContainer:]"
+      },
+      {
+        "module":"UIKit",
+        "location":"UIApplicationMain"
+      },
+      {
+        "module":"m2048",
+        "location":"main",
+        "file":"main.m",
+        "line":16,
+        "codeSnippet":[
+          "int main(int argc, char * argv[])",
+          "{",
+          "  @autoreleasepool {",
+          "      return UIApplicationMain(argc, argv, nil, NSStringFromClass([M2AppDelegate class]));",
+          "  }",
+          "}"
+        ]
+      }
+    ]
+  },
+  {
+    "name":"Thread 42",
+    "crashed":false,
+    "stackTrace":[
+      {
+        "module":"UIKit",
+        "location":"-[UINavigationController preferredContentSize]"
+      },
+      {
+        "module":"UIKit",
+        "location":"-[UIPresentationController preferredContentSizeDidChangeForChildContentContainer:]"
+      },
+      {
+        "module":"UIKit",
+        "location":"UIApplicationMain"
+      },
+      {
+        "module":"m2048",
+        "location":"worker",
+        "file":"worker.m",
+        "line":16,
+        "codeSnippet":[
+          "int worker(int argc, char * argv[])",
+          "{",
+          "  @autoreleasepool {",
+          "      return UIApplicationMain(argc, argv, nil, NSStringFromClass([M2AppDelegate class]));",
+          "  }",
+          "}"
+        ]
+      }
+    ]
+  }
+]

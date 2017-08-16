@@ -1,0 +1,78 @@
+<!--[ Header: ]-->
+<header class="main-header">
+  <h2 class="main-header__title">Threads</h2>
+
+  <!--[ Toggle All: ]-->
+  <button class="main-header__toggle"
+          ng-if="$ctrl.threads.list.length"
+          ng-click="$ctrl.threads.toggleAll()"
+          ng-class="{'main-header__toggle--collapse': $ctrl.threads.toggleDirection !== 'expand'}"
+          ng-switch="$ctrl.threads.toggleDirection">
+    <span ng-switch-when="expand">Show All Threads</span>
+    <span ng-switch-default>Hide All Threads</span>
+  </button>
+</header>
+
+<!--[ Message: ]-->
+<div class="message-container"
+     ng-class="{'message-container--loading': !$ctrl.loaded}"
+     ng-if="!$ctrl.threads.list.length">
+  <span class="message-container__text" ng-if="$ctrl.loaded">Nothing has been logged yet.</span>
+  <span class="invisible" ng-if="!$ctrl.loaded">Loading...</span>
+</div>
+
+
+<!--[ Threads: ]-->
+<ul class="threads-list" ng-if="$ctrl.loaded && $ctrl.threads.list.length">
+
+  <!--[ Thread: ]-->
+  <li class="threads-list__item" ng-repeat="thread in $ctrl.threads.list">
+
+    <!--[ Thread Table: ]-->
+    <table class="thread-table">
+      <caption class="thread-caption" ng-class="{'thread-caption--expanded': thread.isExpanded}"
+               ng-click="thread.toggle()">
+        <span class="thread-caption__title"
+              ng-class="{'thread-caption__title--crashed': thread.crashed}">
+          {{thread.name}}<span ng-show="thread.crashed">: Crashed</span>
+        </span>
+      </caption>
+
+      <thead ng-if="thread.isExpanded">
+        <tr>
+          <th class="thread-table-column--frame">Frame</th>
+          <th class="thread-table-column--module">Module</th>
+          <th class="thread-table-column--crash-details">Crash Details</th>
+        </tr>
+      </thead>
+
+      <tbody ng-if="thread.isExpanded">
+        <tr ng-repeat-start="(index, trace) in thread.stackTrace"
+            ng-click="trace.codeSnippet ? trace.toggle() : null"
+            ng-class="{'thread-row--expandable': trace.file, 'code-snippet--expanded': trace.isExpanded}">
+          <td class="thread-table-column--frame">{{index}}</td>
+
+          <td class="thread-table-column--module">{{trace.module}}</td>
+
+          <td class="thread-table-column--crash-details">
+            <p class="crash-details__file" ng-if="trace.file">
+              <strong>{{trace.file}}</strong> Line <strong>{{trace.line}}</strong>
+            </p>
+            <p class="crash-details__location">{{trace.location}}</p>
+          </td>
+        </tr>
+
+        <tr class="thread-row--code-snippet" ng-class="{'code-snippet--expanded': trace.isExpanded}"
+            ng-if="trace.codeSnippet && trace.isExpanded"
+            ng-repeat-end>
+          <td class="thread-table-column--code-snippet" colspan="3">
+            <ol start="{{trace.line}}">
+              <li ng-repeat="lineOfCode in trace.codeSnippet"><span>{{lineOfCode}}</span></li>
+            </ol>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </li>
+</ul>

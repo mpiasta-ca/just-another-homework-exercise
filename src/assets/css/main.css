@@ -1,0 +1,369 @@
+/*! HTML5 Boilerplate v5.3.0 | MIT License | https://html5boilerplate.com/ */
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Browser Upgrade Prompt
+   ========================================================================== */
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers
+ */
+
+.hidden {
+    display: none !important;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+body {
+  min-width: 600px;
+  margin: 20px 30px;
+}
+.main-content {
+  margin: 0 auto;
+}
+.main-header {
+  overflow: hidden;
+}
+.main-header__title {
+  float: left;
+  margin: 0;
+  line-height: 30px;
+  font-size: 30px;
+  font-weight: 400;
+  color: #5dbdee;
+}
+.main-header__toggle {
+  float: right;
+  border: 1px solid #0097e4;
+  border-radius: 2px;
+  background: #ffffff url('../img/threads-expand.jpg') 8px 3px no-repeat;
+  padding: 6px 13px 6px 23px;
+  font-size: 12px;
+  color: #0097e4;
+}
+.main-header__toggle--collapse {
+  background-image: url('../img/threads-collapse.jpg');
+}
+.message-container {
+  margin-top: 30px;
+  padding: 40px;
+  text-align: center;
+  font-size: 18px;
+  color: #5c7080;
+}
+.message-container--loading {
+  background: transparent url('../img/loader.gif') center center no-repeat;
+}
+.threads-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.threads-list__item {
+  margin: 12px 0;
+}
+.thread-table {
+  width: Calc(100% - 10px);
+  margin: 0 5px;
+}
+.thread-caption {
+  margin: 0 -5px;
+  overflow: hidden;
+  border: 1px solid #b9e4fa;
+  border-radius: 2px;
+  height: 34px;
+  background: #f1f8ff url('../img/thread-expand.jpg') right top no-repeat;
+  text-align: left;
+  cursor: pointer;
+}
+.thread-caption--expanded {
+  background-image: url('../img/thread-collapse.jpg');
+}
+.thread-caption__title {
+  display: block;
+  padding: 8px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #5c7080;
+}
+.thread-caption__title--crashed {
+  color: #e4002a;
+}
+.thread-table thead {
+}
+.thread-table thead tr {
+}
+.thread-table thead th {
+  border-left: 1px solid #d8eefd;
+  border-right: 1px solid #d8eefd;
+  background-color: #f8fcfe;
+  color: #9fb4be;
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.thread-table th.thread-table-column--frame,
+.thread-table th.thread-table-column--module,
+.thread-table th.thread-table-column--crash-details {
+  padding: 7px 4px 6px;
+}
+.thread-table tbody {
+}
+.thread-table tbody tr {
+
+}
+.thread-table tbody td {
+  border-top: 1px solid #d8eefd;
+  border-left: 1px solid #d8eefd;
+  border-right: 1px solid #d8eefd;
+  font-size: 13px;
+  color: #6d7d8d;
+}
+.thread-table tbody tr:last-child td {
+  border-bottom: 1px solid #d8eefd;
+}
+.thread-table-column--frame,
+.thread-table .thread-table-column--frame {
+  width: 70px;
+  text-align: center;
+  padding: 6px 4px;
+  border-right: 0;
+}
+.thread-table-column--module,
+.thread-table .thread-table-column--module {
+  width: 24%;
+  border-left: 0;
+  border-right: 0;
+  padding: 6px 4px;
+}
+.thread-table-column--crash-details,
+.thread-table .thread-table-column--crash-details {
+  border-left: 0;
+  padding: 6px 4px;
+}
+.thread-table .thread-row--expandable,
+.thread-table .thread-row--expandable .thread-table-column--frame,
+.thread-table .thread-row--expandable .thread-table-column--module,
+.thread-table .thread-row--expandable .thread-table-column--crash-details {
+  border-color: #ffe6e8;
+  border-bottom: 1px solid #ffe6e8;
+  background-color: #fff5f6;
+  cursor: pointer;
+}
+.thread-table .thread-row--expandable .thread-table-column--frame,
+.thread-table .thread-row--expandable .thread-table-column--module {
+  font-weight: bold;
+  color: #2c4257;
+}
+.thread-table .thread-row--expandable .thread-table-column--crash-details {
+  background: #fff5f6 url('../img/trace-expand.jpg') right center no-repeat;
+}
+.thread-table .thread-row--expandable .thread-table-column--crash-details .crash-details__file {
+  font-weight: bold;
+  color: #2c4257;
+}
+.thread-table .thread-row--expandable .thread-table-column--crash-details strong {
+  color: #df0000;
+}
+.thread-table .code-snippet--expanded td.thread-table-column--frame {
+  border-left-width: 4px;
+  border-left-color: #df0000;
+}
+.thread-table .code-snippet--expanded .thread-table-column--frame,
+.thread-table .code-snippet--expanded .thread-table-column--module,
+.thread-table .code-snippet--expanded .thread-table-column--crash-details {
+  border-color: #fd919c;
+  background-color: #ffdfe0;
+}
+.thread-table .code-snippet--expanded .thread-table-column--crash-details {
+  background: #ffdfe0 url('../img/trace-collapse.jpg') right center no-repeat;
+}
+.thread-table-column--crash-details p {
+  margin: 0;
+}
+.thread-table .thread-row--code-snippet .thread-table-column--code-snippet {
+  border: 1px solid #70213b;
+  border-left: 4px solid #df0000;
+  background: #294055;
+  color: #9ca8b3;
+}
+.thread-table-column--code-snippet {
+
+}
+.thread-table-column--code-snippet ol {
+  list-style-position: inside;
+  margin: 0;
+  padding: 4px 0;
+}
+.thread-table-column--code-snippet li {
+  padding: 1px 5px 1px 32px;
+  font-family: monospace;
+  font-size: 13px;
+  line-height: 18px;
+  color: #909da9;
+}
+.thread-table-column--code-snippet li:hover {
+  background-color: #4b6073;
+}
+.thread-table-column--code-snippet li span {
+  margin-left: 22px;
+  white-space: pre-wrap;
+  color: #b58315;
+}
+.thread-table-column--code-snippet pre {
+  margin: 0;
+}

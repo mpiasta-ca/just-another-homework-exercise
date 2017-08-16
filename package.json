@@ -1,0 +1,15 @@
+{
+  "name": "just-another-homework-exercise",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Homework exercise I completed during interviews to demonstrate my programming skills.",
+  "repository": "",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^0.9.0"
+  },
+  "scripts": {
+    "prestart": "npm install",
+    "start": "http-server -a localhost -p 3000 -c-1 ./src"
+  }
+}
