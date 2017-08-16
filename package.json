@@ -2,7 +2,7 @@
   "name": "just-another-homework-exercise",
   "private": true,
   "version": "0.0.0",
-  "description": "Homework exercise I completed during interviews to demonstrate my programming skills.",
+  "description": "An angular app built for a homework exercise to demonstrate my programming skills in HTML, CSS, and JavaScript.",
   "repository": "",
   "license": "MIT",
   "devDependencies": {
