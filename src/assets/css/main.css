@@ -225,7 +225,7 @@ body {
   overflow: hidden;
   border: 1px solid #b9e4fa;
   border-radius: 2px;
-  height: 34px;
+  height: 32px;
   background: #f1f8ff url('../img/thread-expand.jpg') right top no-repeat;
   text-align: left;
   cursor: pointer;
@@ -235,7 +235,7 @@ body {
 }
 .thread-caption__title {
   display: block;
-  padding: 8px 22px;
+  padding: 7px 22px;
   font-size: 14px;
   font-weight: 600;
   color: #5c7080;

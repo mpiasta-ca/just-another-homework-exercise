@@ -1,11 +1,15 @@
-'use strict';
+//template
+import threadsTemplate from './threads.html';
+
+//vendor
+import angular from 'angular';
 
 (function (ng) {
 
   ng.module('DeployTool.Threads', ['ngRoute'])
     .config(['$routeProvider', configRouteProvider])
     .component('threads', {
-      templateUrl: './threads/threads.html',
+      template: threadsTemplate,
       controller: threadsController
     });
 
@@ -16,93 +20,87 @@
   }
 
   function threadsController () {
-    var store = this;
-    getThreads();
+    getThreads.call(this);
 
-    ////////////
+    ////
 
     function getThreads () {
-      threadsApiService().get().then(function (threads) {
-        store.threads = new Threads(threads);
-        store.loaded = true;
+      threadsService().get().then(threads => {
+        this.threads = new Threads(threads);
+        this.loaded = true;
       });
+    }
+
+    function threadsService () {
+      return {
+        get: () => {
+          let $injector = ng.element(document.body).injector();
+          let $timeout = $injector.get('$timeout');
+          let $http = $injector.get('$http');
+          let mockDelayInMs = 2000;
+
+          return $timeout(() => {
+            return $http.get('./threads/mock.json').then(response => {
+              return response.data || [];
+            });
+          }, mockDelayInMs);
+        }
+      };
     }
   }
 
-  function threadsApiService () {
-    var $injector = ng.element(document.body).injector();
-    var $timeout = $injector.get('$timeout');
-    var $http = $injector.get('$http');
+  class Threads {
+    constructor (threads) {
+      this.list = threads.map(thread => new Thread(this, thread));
+      this.toggleDirection = 'expand';
+    }
 
-    return {
-      get: function () {
-        var mockDelayInMs = 2000;
-
-        return $timeout(function makeHttpCall() {
-          return $http.get('./threads/mock.json').then(function (response) {
-            return response.data || [];
-          });
-        }, mockDelayInMs);
-      }
-    };
-  }
-
-  function Threads (threads) {
-    var self = this;
-
-    self.list = threads.map(function (thread) {
-      return new Thread(self, thread);
-    });
-
-    self.toggleDirection = 'expand';
-
-    self.updateToggleDirection = function () {
-      var expandedThreads = 0;
-      self.list.forEach(function (thread) {
+    updateToggleDirection () {
+      let expandedThreads = 0;
+      this.list.forEach(thread => {
         expandedThreads += thread.isExpanded ? 1 : 0;
       });
-      self.toggleDirection = expandedThreads < self.list.length ? 'expand' : 'collapse';
+      this.toggleDirection = expandedThreads < this.list.length ? 'expand' : 'collapse';
     };
 
-    self.toggleAll = function () {
-      self.list.forEach(function (thread) {
-        thread.toggle(self.toggleDirection === 'expand');
+    toggleAll () {
+      this.list.forEach(thread => {
+        thread.toggle(this.toggleDirection === 'expand');
       });
-      self.updateToggleDirection();
+      this.updateToggleDirection();
     };
   }
 
-  function Thread (parent, thread) {
-    var self = this;
+  class Thread {
+    constructor (parent, thread) {
+      this.parent = parent;
+      this.name = thread.name || 'Thread';
+      this.crashed = thread.crashed || false;
+      this.stackTrace = thread.stackTrace.map(trace => new Trace(trace));
+      this.isExpanded = false;
+    }
 
-    self.name = thread.name || 'Thread';
-    self.crashed = thread.crashed || false;
-    self.stackTrace = thread.stackTrace.map(function (trace) {
-      return new Trace(trace);
-    });
-
-    self.isExpanded = false;
-
-    self.toggle = function (toggleState) {
-      var parentSetState = typeof toggleState === 'boolean';
-      self.isExpanded = parentSetState ? toggleState : !self.isExpanded;
-      if (!parentSetState) parent.updateToggleDirection();
-    };
+    toggle (toggleState) {
+      let parentSetState = typeof toggleState === 'boolean';
+      this.isExpanded = parentSetState ? toggleState : !this.isExpanded;
+      if (!parentSetState) this.parent.updateToggleDirection();
+    }
   }
 
-  function Trace (trace) {
-    this.module = 'Unknown';
-    this.location = 'Unknown';
-    this.file = null;
-    this.line = null;
-    this.codeSnippet = null;
+  class Trace {
+    constructor (trace) {
+      this.module = 'Unknown';
+      this.location = 'Unknown';
+      this.file = null;
+      this.line = null;
+      this.codeSnippet = null;
+      this.isExpanded = false;
 
-    this.isExpanded = false;
+      Object.assign(this, trace);
+    }
 
-    this.toggle = function () {
+    toggle () {
       this.isExpanded = !this.isExpanded;
-    };
-
-    Object.assign(this, trace);
+    }
   }
 })(angular);

@@ -48,7 +48,7 @@
 
       <tbody ng-if="thread.isExpanded">
         <tr ng-repeat-start="(index, trace) in thread.stackTrace"
-            ng-click="trace.codeSnippet ? trace.toggle() : null"
+            ng-click="trace.codeSnippet && trace.toggle()"
             ng-class="{'thread-row--expandable': trace.file, 'code-snippet--expanded': trace.isExpanded}">
           <td class="thread-table-column--frame">{{index}}</td>
 
