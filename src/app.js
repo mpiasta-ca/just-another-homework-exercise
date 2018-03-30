@@ -4,20 +4,11 @@ import './assets/css/main.css';
 
 //vendor
 import angular from 'angular';
-import 'angular-route';
+import uirouter from '@uirouter/angularjs';
 
 //app
-import './threads/threads';
+import routes from './app.routes';
+import threads from './threads';
 
-(function (ng) {
-
-  ng.module('DeployTool', ['ngRoute', 'DeployTool.Threads'])
-    .config(['$routeProvider', configRouteProvider]);
-
-  ////////////
-
-  function configRouteProvider ($routeProvider) {
-    $routeProvider.otherwise({ redirectTo: '/threads' });
-  }
-
-})(angular);
+angular.module('DeployTool', [uirouter, threads])
+  .config(routes);
