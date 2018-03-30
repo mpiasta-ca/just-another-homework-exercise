@@ -7,8 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "angular": "^1.6.9",
-    "@uirouter/angularjs": "^1.0.15",
-    "lodash": "^4.17.5"
+    "@uirouter/angularjs": "^1.0.15"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
